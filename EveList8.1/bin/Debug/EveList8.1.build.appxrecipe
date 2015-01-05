@@ -7,88 +7,91 @@
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
     <PackageIdentityName>9524bd68-6749-4322-9f59-8959a5472eec</PackageIdentityName>
-    <IntermediateOutputPath>C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\obj\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Стас\Documents\Evelist\EveList8.1\obj\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\bin\Debug\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Стас\Documents\Evelist\EveList8.1\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\bin\Debug\EveList8.1.exe">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\bin\Debug\EveList8.1.exe">
       <PackagePath>EveList8.1.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EvelistApi\bin\Debug\EvelistApi.dll">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EvelistApi\bin\Debug\EvelistApi.dll">
       <PackagePath>EvelistApi.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\packages\Microsoft.Bcl.Async.1.0.168\lib\wpa81\Microsoft.Threading.Tasks.dll">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\packages\Microsoft.Bcl.Async.1.0.168\lib\wpa81\Microsoft.Threading.Tasks.dll">
       <PackagePath>Microsoft.Threading.Tasks.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\packages\Microsoft.Bcl.Async.1.0.168\lib\wpa81\Microsoft.Threading.Tasks.Extensions.dll">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\packages\Microsoft.Bcl.Async.1.0.168\lib\wpa81\Microsoft.Threading.Tasks.Extensions.dll">
       <PackagePath>Microsoft.Threading.Tasks.Extensions.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EvelistApi\bin\Debug\Newtonsoft.Json.dll">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EvelistApi\bin\Debug\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\Assets\6011401.png">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\Assets\6011401.png">
       <PackagePath>Assets\6011401.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\Assets\appbar.social.twitter.png">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\Assets\appbar.social.twitter.png">
       <PackagePath>Assets\appbar.social.twitter.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\Assets\evelist.png">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\Assets\evelist.png">
       <PackagePath>Assets\evelist.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\Assets\face.png">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\Assets\face.png">
       <PackagePath>Assets\face.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\Assets\Logo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\Assets\Logo.scale-240.png">
       <PackagePath>Assets\Logo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\Assets\SmallLogo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\Assets\newBack.png">
+      <PackagePath>Assets\newBack.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\Assets\SmallLogo.scale-240.png">
       <PackagePath>Assets\SmallLogo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\Assets\SplashScreen.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\Assets\SplashScreen.scale-240.png">
       <PackagePath>Assets\SplashScreen.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\Assets\Square71x71Logo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\Assets\Square71x71Logo.scale-240.png">
       <PackagePath>Assets\Square71x71Logo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\Assets\StoreLogo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\Assets\StoreLogo.scale-240.png">
       <PackagePath>Assets\StoreLogo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\Assets\WideLogo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\Assets\WideLogo.scale-240.png">
       <PackagePath>Assets\WideLogo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\Common\ReadMe.txt">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\Common\ReadMe.txt">
       <PackagePath>Common\ReadMe.txt</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\DataModel\SampleData.json">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\DataModel\SampleData.json">
       <PackagePath>DataModel\SampleData.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\bin\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\bin\Debug\View\AuthPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\bin\Debug\View\AuthPage.xbf">
       <PackagePath>View\AuthPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\bin\Debug\View\ItemPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\bin\Debug\View\ItemPage.xbf">
       <PackagePath>View\ItemPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\bin\Debug\View\PivotPage.xbf">
-      <PackagePath>View\PivotPage.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\bin\Debug\View\Main.xbf">
+      <PackagePath>View\Main.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\bin\Debug\EveList8.1.xr.xml">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\bin\Debug\EveList8.1.xr.xml">
       <PackagePath>EveList8.1.xr.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EveList8.1\bin\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Стас\Documents\Evelist\EveList8.1\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

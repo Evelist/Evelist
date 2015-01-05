@@ -1,9 +1,9 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿// Документацию по шаблону элемента пустой страницы см. по адресу http://go.microsoft.com/fwlink/?LinkID=390556
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using EveList8._1.Common;
 
-// Документацию по шаблону элемента пустой страницы см. по адресу http://go.microsoft.com/fwlink/?LinkID=390556
-
-namespace EveList8._1
+namespace EveList8._1.View
 {
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
@@ -13,6 +13,13 @@ namespace EveList8._1
         public AuthPage()
         {
             InitializeComponent();
+            Messenger<NavigationMessage>.Register(NavigateTo);
+        }
+
+        private void NavigateTo(NavigationMessage navigationMessage)
+        {
+            if(navigationMessage.PageName == "Main")
+                Frame.Navigate(typeof (MainPage), navigationMessage.ParametrQuery);
         }
 
         /// <summary>

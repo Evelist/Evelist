@@ -53,6 +53,21 @@ namespace EvelistApi
             return await rpc.InvokeMethod<BaseResult>("SendMessage", "ApiController", session, eventId, message, services);
         }
 
+        public async Task<EventInfoResult> GetEventInfo(string session, string eventId)
+        {
+            return await rpc.InvokeMethod<EventInfoResult>("GetEventInfo", "ApiController", session, eventId);
+        }
+
+        public async Task<GetEventCommentsResult> GetEventComment(string session, string eventId)
+        {
+            return await rpc.InvokeMethod<GetEventCommentsResult>("GetEventCommentList", "ApiController", session, eventId);
+        }
+
+        public async Task<GetProfileInfoResult> GetProfileInfo(string session)
+        {
+            return await rpc.InvokeMethod<GetProfileInfoResult>("GetProfileInfo", "ApiController", session);
+        }
+
         public async Task<BaseResult> SendPhoto(string session, string eventId, string name, ServicesArray services, string fileUrl)
         {
             throw new NotImplementedException();

@@ -3,6 +3,7 @@ Assets\appbar.social.twitter.png
 Assets\evelist.png
 Assets\face.png
 Assets\Logo.scale-240.png
+Assets\newBack.png
 Assets\SmallLogo.scale-240.png
 Assets\SplashScreen.scale-240.png
 Assets\Square71x71Logo.scale-240.png
@@ -12,6 +13,6 @@ App.xbf
 EveList8.1.xr.xml
 View\AuthPage.xbf
 View\ItemPage.xbf
-View\PivotPage.xbf
+View\Main.xbf
 Common\ReadMe.txt
 DataModel\SampleData.json

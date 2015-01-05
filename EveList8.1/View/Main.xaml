@@ -1,9 +1,10 @@
 ﻿<Page
-    x:Class="EveList8._1.PivotPage"
+    x:Class="EveList8._1.View.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:EveList8._1.Common.Converter"
     mc:Ignorable="d"
     DataContext="{Binding Main, Mode=OneWay, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -17,17 +18,25 @@
         </TransitionCollection>
     </Page.Transitions>
 
-    <Grid>
-        <Pivot x:Uid="Pivot" Title="EveList" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
+    <Page.Resources>
+        <converters:SexConverter x:Name="SexConverter"/>
+        <converters:IntToVisibilityConverter x:Name="IntToVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid Margin="12,0,0,0">
+        <Pivot x:Uid="Pivot" Title="EveList" x:Name="pivot" 
+               CommonNavigationTransitionInfo.IsStaggerElement="True" SelectionChanged="pivot_SelectionChanged">
             <!--Сводный элемент один-->
             <PivotItem
                 x:Uid="PivotItem1"
-                Margin="19,14.5,0,0"
+                Margin="0,14.5,0,0"
                 Header="События"
                 CommonNavigationTransitionInfo.IsStaggerElement="True">
-                <ListView ItemsSource ="{Binding Events}" 
+                <ListView x:Name="list" ItemsSource ="{Binding Events}" 
+                          ContinuumNavigationTransitionInfo.ExitElementContainer="True" 
                           SelectedItem="{Binding Selected, Mode=TwoWay}"
-                          ContinuumNavigationTransitionInfo.ExitElementContainer="True">
+                          ItemClick="ListView_ItemClick">
+
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -54,7 +63,6 @@
             <!--=======================================================================================-->
             <PivotItem
                 x:Uid="PivotItem2"
-                Margin="5,14.5,0,0"
                 Header="Профиль">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -64,26 +72,35 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Image Source="../Assets/Logo.png" 
-                           Grid.RowSpan="3" VerticalAlignment="Top"
-                           Pivot.SlideInAnimationGroup="1"/>
-                    <TextBlock Grid.Row="0" Grid.Column="1"
+                    <Image Source="{Binding UserViewModel.Avatar}" 
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           MaxWidth="350"
+                           Pivot.SlideInAnimationGroup="1"
+                           Margin="0,0,10,0" 
+                           Grid.ColumnSpan="2"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0"
                                FontSize="35"
-                               Text="UserName"
-                               Pivot.SlideInAnimationGroup="2"/>
+                               Text="{Binding UserViewModel.UserName}"
+                               Pivot.SlideInAnimationGroup="2"
+                               Margin="0,0,10,0"/>
                     <TextBlock Grid.Row="1" Grid.Column="1"
+                               FontSize="35"
+                               Text="{Binding UserViewModel.Surname}"
+                               Pivot.SlideInAnimationGroup="2"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                                FontSize="25"
                                Text="Город: Томск"
                                Pivot.SlideInAnimationGroup="3"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1"
+                    <!--<TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                                FontSize="25"
-                               Text="Пол: Мужской"
-                               Pivot.SlideInAnimationGroup="3"/>
+                               Text="{Binding UserViewModel.Sex, Converter={StaticResource SexConverter}}"
+                               Pivot.SlideInAnimationGroup="3"/>-->
 
-                    <Rectangle Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+                    <!--<Rectangle Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
                                Stroke="{ThemeResource PhoneForegroundBrush}" 
                                StrokeThickness="5"
                                Margin="10"
@@ -99,7 +116,7 @@
                                                TextWrapping="Wrap" 
                                                MaxLines="2"/>
                         </StackPanel>
-                    </StackPanel>
+                    </StackPanel>-->
                 </Grid>
             </PivotItem>
         </Pivot>
@@ -107,8 +124,9 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Label="Поиск"    Icon="Find" />
-            <AppBarButton Label="Обновить" Icon="Sync" />
+            <AppBarButton Label="Поиск"    Icon="Find" Name="SearchButton" />
+            <AppBarButton Label="Обновить" Icon="Sync" Name="RefreshButton"/>
+            <AppBarButton Label="Выход" Icon="ClearSelection" Name="ExitButton" Visibility="Collapsed"/>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="Найти события поблизости" />
             </CommandBar.SecondaryCommands>

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.Foundation.Metadata;
+using Windows.Phone.UI.Input;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -56,11 +58,11 @@ namespace EveList8._1.Common
     ///     }
     /// </code>
     /// </example>
-    [Windows.Foundation.Metadata.WebHostHidden]
+    [WebHostHidden]
     public class NavigationHelper : DependencyObject
     {
         private Page Page { get; set; }
-        private Frame Frame { get { return this.Page.Frame; } }
+        private Frame Frame { get { return Page.Frame; } }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="NavigationHelper"/>.
@@ -70,15 +72,15 @@ namespace EveList8._1.Common
         /// запросы навигации происходят, только когда страница занимает все окно.</param>
         public NavigationHelper(Page page)
         {
-            this.Page = page;
+            Page = page;
 
             // Если данная страница является частью визуального дерева, возникают два изменения:
             // 1) Сопоставление состояния просмотра приложения с визуальным состоянием для страницы.
             // 2) Обработка запросов на аппаратные переходы
-            this.Page.Loaded += (sender, e) =>
+            Page.Loaded += (sender, e) =>
             {
 #if WINDOWS_PHONE_APP
-                Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+                HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 #else
                 // Навигация с помощью мыши и клавиатуры применяется, только если страница занимает все окно
                 if (this.Page.ActualHeight == Window.Current.Bounds.Height &&
@@ -94,10 +96,10 @@ namespace EveList8._1.Common
             };
 
             // Отмена тех же изменений, когда страница перестает быть видимой
-            this.Page.Unloaded += (sender, e) =>
+            Page.Unloaded += (sender, e) =>
             {
 #if WINDOWS_PHONE_APP
-                Windows.Phone.UI.Input.HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
+                HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
 #else
                 Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated -=
                     CoreDispatcher_AcceleratorKeyActivated;
@@ -127,8 +129,8 @@ namespace EveList8._1.Common
                 if (_goBackCommand == null)
                 {
                     _goBackCommand = new RelayCommand(
-                        () => this.GoBack(),
-                        () => this.CanGoBack());
+                        () => GoBack(),
+                        () => CanGoBack());
                 }
                 return _goBackCommand;
             }
@@ -151,8 +153,8 @@ namespace EveList8._1.Common
                 if (_goForwardCommand == null)
                 {
                     _goForwardCommand = new RelayCommand(
-                        () => this.GoForward(),
-                        () => this.CanGoForward());
+                        () => GoForward(),
+                        () => CanGoForward());
                 }
                 return _goForwardCommand;
             }
@@ -168,7 +170,7 @@ namespace EveList8._1.Common
         /// </returns>
         public virtual bool CanGoBack()
         {
-            return this.Frame != null && this.Frame.CanGoBack;
+            return Frame != null && Frame.CanGoBack;
         }
         /// <summary>
         /// Виртуальный метод, используемый свойством <see cref="GoForwardCommand"/>
@@ -180,7 +182,7 @@ namespace EveList8._1.Common
         /// </returns>
         public virtual bool CanGoForward()
         {
-            return this.Frame != null && this.Frame.CanGoForward;
+            return Frame != null && Frame.CanGoForward;
         }
 
         /// <summary>
@@ -189,7 +191,7 @@ namespace EveList8._1.Common
         /// </summary>
         public virtual void GoBack()
         {
-            if (this.Frame != null && this.Frame.CanGoBack) this.Frame.GoBack();
+            if (Frame != null && Frame.CanGoBack) Frame.GoBack();
         }
         /// <summary>
         /// Виртуальный метод, используемый свойством <see cref="GoForwardCommand"/>
@@ -197,7 +199,7 @@ namespace EveList8._1.Common
         /// </summary>
         public virtual void GoForward()
         {
-            if (this.Frame != null && this.Frame.CanGoForward) this.Frame.GoForward();
+            if (Frame != null && Frame.CanGoForward) Frame.GoForward();
         }
 
 #if WINDOWS_PHONE_APP
@@ -206,12 +208,12 @@ namespace EveList8._1.Common
         /// </summary>
         /// <param name="sender">Экземпляр, инициировавший событие.</param>
         /// <param name="e">Данные события, описывающие условия, которые привели к возникновению события.</param>
-        private void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
-            if (this.GoBackCommand.CanExecute(null))
+            if (GoBackCommand.CanExecute(null))
             {
                 e.Handled = true;
-                this.GoBackCommand.Execute(null);
+                GoBackCommand.Execute(null);
             }
         }
 #else
@@ -316,15 +318,15 @@ namespace EveList8._1.Common
         /// задает группу для отображения.</param>
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-            var frameState = SuspensionManager.SessionStateForFrame(this.Frame);
-            this._pageKey = "Page-" + this.Frame.BackStackDepth;
+            var frameState = SuspensionManager.SessionStateForFrame(Frame);
+            _pageKey = "Page-" + Frame.BackStackDepth;
 
             if (e.NavigationMode == NavigationMode.New)
             {
                 // Очистка существующего состояния для перехода вперед при добавлении новой страницы в
                 // стек навигации
-                var nextPageKey = this._pageKey;
-                int nextPageIndex = this.Frame.BackStackDepth;
+                var nextPageKey = _pageKey;
+                int nextPageIndex = Frame.BackStackDepth;
                 while (frameState.Remove(nextPageKey))
                 {
                     nextPageIndex++;
@@ -332,9 +334,9 @@ namespace EveList8._1.Common
                 }
 
                 // Передача параметра навигации на новую страницу
-                if (this.LoadState != null)
+                if (LoadState != null)
                 {
-                    this.LoadState(this, new LoadStateEventArgs(e.Parameter, null));
+                    LoadState(this, new LoadStateEventArgs(e.Parameter, null));
                 }
             }
             else
@@ -342,9 +344,9 @@ namespace EveList8._1.Common
                 // Передача на страницу параметра навигации и сохраненного состояния страницы с использованием
                 // той же стратегии загрузки приостановленного состояния и повторного создания страниц, удаленных
                 // из кэша
-                if (this.LoadState != null)
+                if (LoadState != null)
                 {
-                    this.LoadState(this, new LoadStateEventArgs(e.Parameter, (Dictionary<String, Object>)frameState[this._pageKey]));
+                    LoadState(this, new LoadStateEventArgs(e.Parameter, (Dictionary<String, Object>)frameState[_pageKey]));
                 }
             }
         }
@@ -358,11 +360,11 @@ namespace EveList8._1.Common
         /// задает группу для отображения.</param>
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
-            var frameState = SuspensionManager.SessionStateForFrame(this.Frame);
+            var frameState = SuspensionManager.SessionStateForFrame(Frame);
             var pageState = new Dictionary<String, Object>();
-            if (this.SaveState != null)
+            if (SaveState != null)
             {
-                this.SaveState(this, new SaveStateEventArgs(pageState));
+                SaveState(this, new SaveStateEventArgs(pageState));
             }
             frameState[_pageKey] = pageState;
         }
@@ -409,8 +411,8 @@ namespace EveList8._1.Common
         public LoadStateEventArgs(Object navigationParameter, Dictionary<string, Object> pageState)
             : base()
         {
-            this.NavigationParameter = navigationParameter;
-            this.PageState = pageState;
+            NavigationParameter = navigationParameter;
+            PageState = pageState;
         }
     }
     /// <summary>
@@ -430,7 +432,7 @@ namespace EveList8._1.Common
         public SaveStateEventArgs(Dictionary<string, Object> pageState)
             : base()
         {
-            this.PageState = pageState;
+            PageState = pageState;
         }
     }
 }

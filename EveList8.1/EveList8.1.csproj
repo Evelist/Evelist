@@ -88,7 +88,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\PivotPage.xaml">
+    <Page Include="View\Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,6 +97,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\Converter\IntToVisibilityConverter.cs" />
+    <Compile Include="Common\Converter\SexConverter.cs" />
+    <Compile Include="Common\Messenger.cs" />
+    <Compile Include="Common\Session.cs" />
+    <Compile Include="DataModel\Comment.cs" />
+    <Compile Include="DataModel\Person.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="View\AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </Compile>
@@ -109,8 +116,8 @@
     <Compile Include="View\ItemPage.xaml.cs">
       <DependentUpon>ItemPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PivotPage.xaml.cs">
-      <DependentUpon>PivotPage.xaml</DependentUpon>
+    <Compile Include="View\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,6 +137,7 @@
     <Content Include="Assets\evelist.png" />
     <Content Include="Assets\face.png" />
     <Content Include="Assets\Logo.scale-240.png" />
+    <Content Include="Assets\newBack.png" />
     <Content Include="Assets\SmallLogo.scale-240.png" />
     <Content Include="Assets\SplashScreen.scale-240.png" />
     <Content Include="Assets\Square71x71Logo.scale-240.png" />

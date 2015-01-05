@@ -1,8 +1,8 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
-    <LocalAssembly PathName="c:\users\стас\documents\visual studio 2013\projects\evelist8.1\evelist8.1\obj\debug\intermediatexaml\evelist8.1.exe" HashGuid="87292568-832b-df28-0b25-3780c7bf6c03" />
-    <ReferenceAssembly PathName="c:\users\стас\documents\visual studio 2013\projects\evelist8.1\evelistapi\bin\debug\evelistapi.dll" HashGuid="84828261-7679-eba5-5eef-fb9469a0fa95" />
-    <ReferenceAssembly PathName="c:\users\стас\documents\visual studio 2013\projects\evelist8.1\packages\microsoft.bcl.async.1.0.168\lib\wpa81\microsoft.threading.tasks.dll" HashGuid="3a1beea5-1547-d5c6-af32-3b5c761c2a6a" />
-    <ReferenceAssembly PathName="c:\users\стас\documents\visual studio 2013\projects\evelist8.1\packages\microsoft.bcl.async.1.0.168\lib\wpa81\microsoft.threading.tasks.extensions.dll" HashGuid="79a01987-c06c-c9d7-37eb-629809787680" />
+    <LocalAssembly PathName="c:\users\стас\documents\evelist\evelist8.1\obj\debug\intermediatexaml\evelist8.1.exe" HashGuid="50e6d9e0-59df-a16b-0bec-13695f2ce633" />
+    <ReferenceAssembly PathName="c:\users\стас\documents\evelist\evelistapi\bin\debug\evelistapi.dll" HashGuid="97a3b90a-9624-c0e1-1fd4-b383aa732384" />
+    <ReferenceAssembly PathName="c:\users\стас\documents\evelist\packages\microsoft.bcl.async.1.0.168\lib\wpa81\microsoft.threading.tasks.dll" HashGuid="3a1beea5-1547-d5c6-af32-3b5c761c2a6a" />
+    <ReferenceAssembly PathName="c:\users\стас\documents\evelist\packages\microsoft.bcl.async.1.0.168\lib\wpa81\microsoft.threading.tasks.extensions.dll" HashGuid="79a01987-c06c-c9d7-37eb-629809787680" />
   </ReferenceAssemblyList>
 </XamlCompilerSaveState>

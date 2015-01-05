@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // Документацию по шаблону "Приложение с Pivot" см. по адресу http://go.microsoft.com/fwlink/?LinkID=391641
+using EveList8._1.ViewModel;
 
 namespace EveList8._1
 {
@@ -31,11 +32,11 @@ namespace EveList8._1
 
         public ItemPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.navigationHelper = new NavigationHelper(this);
-            this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
-            this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+            navigationHelper = new NavigationHelper(this);
+            navigationHelper.LoadState += NavigationHelper_LoadState;
+            navigationHelper.SaveState += NavigationHelper_SaveState;
         } 
 
         /// <summary>
@@ -43,7 +44,7 @@ namespace EveList8._1
         /// </summary>
         public NavigationHelper NavigationHelper
         {
-            get { return this.navigationHelper; }
+            get { return navigationHelper; }
         }
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace EveList8._1
         /// </summary>
         public ObservableDictionary DefaultViewModel
         {
-            get { return this.defaultViewModel; }
+            get { return defaultViewModel; }
         }
 
         /// <summary>
@@ -69,8 +70,8 @@ namespace EveList8._1
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: Создайте соответствующую модель данных для своей проблемной области, чтобы заменить ими данные-пример.
-            var item = await SampleDataSource.GetItemAsync((string)e.NavigationParameter);
-            this.DefaultViewModel["Item"] = item;
+            var item = (EventViewModel)e.NavigationParameter;
+            DataContext = item;
         }
 
         /// <summary>
@@ -103,14 +104,30 @@ namespace EveList8._1
         /// событий, которые не могут отменить запрос навигации.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.navigationHelper.OnNavigatedTo(e);
+            navigationHelper.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            this.navigationHelper.OnNavigatedFrom(e);
+            navigationHelper.OnNavigatedFrom(e);
         }
 
         #endregion
+
+        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (pivot1.SelectedIndex == 0)
+            {
+                PhotoButton.Visibility =
+                    VideoButton.Visibility = Visibility.Visible;
+                CommentButton.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                PhotoButton.Visibility =
+                    VideoButton.Visibility = Visibility.Collapsed;
+                CommentButton.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

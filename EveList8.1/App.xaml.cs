@@ -1,4 +1,7 @@
-﻿using EveList8._1.Common;
+﻿using System.Diagnostics;
+using System.Linq;
+using Windows.UI.Core;
+using EveList8._1.Common;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -8,6 +11,8 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // Документацию по шаблону "Приложение с Pivot" см. по адресу http://go.microsoft.com/fwlink/?LinkID=391641
+using EveList8._1.DataModel;
+using EveList8._1.View;
 
 namespace EveList8._1
 {
@@ -16,8 +21,7 @@ namespace EveList8._1
     /// </summary>
     public sealed partial class App : Application
     {
-        private TransitionCollection transitions;
-        public static Frame rootFrame;
+        private TransitionCollection _transitions;
 
         /// <summary>
         /// Инициализирует одноэлементный объект приложения. Это первая выполняемая строка разрабатываемого
@@ -25,8 +29,8 @@ namespace EveList8._1
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += this.OnSuspending;
+            InitializeComponent();
+            Suspending += OnSuspending;
         }
 
         /// <summary>
@@ -38,13 +42,13 @@ namespace EveList8._1
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached)
+            if (Debugger.IsAttached)
             {
-                this.DebugSettings.EnableFrameRateCounter = true;
+                DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
 
-            rootFrame = Window.Current.Content as Frame;
+            var rootFrame = Window.Current.Content as Frame;
 
             // Не повторяйте инициализацию приложения, если в окне уже имеется содержимое,
             // только обеспечьте активность окна.
@@ -82,23 +86,54 @@ namespace EveList8._1
                 // Удаляет турникетную навигацию для запуска.
                 if (rootFrame.ContentTransitions != null)
                 {
-                    this.transitions = new TransitionCollection();
+                    _transitions = new TransitionCollection();
                     foreach (var c in rootFrame.ContentTransitions)
                     {
-                        this.transitions.Add(c);
+                        _transitions.Add(c);
                     }
                 }
 
                 rootFrame.ContentTransitions = null;
-                rootFrame.Navigated += this.RootFrame_FirstNavigated;
+                rootFrame.Navigated += RootFrame_FirstNavigated;
 
                 // Если стек навигации не восстанавливается для перехода к первой странице,
                 // настройка новой страницы путем передачи необходимой информации в качестве параметра
                 // навигации.
-                if (!rootFrame.Navigate(typeof(AuthPage), e.Arguments))
+                var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+                if (localSettings.Values.ContainsKey("session"))
                 {
-                    throw new Exception("Failed to create initial page");
+                    var api = new EvelistApi.EvelistApiClient();
+                    var dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
+                    api.GetProfileInfo((string) localSettings.Values["session"]).ContinueWith(r =>
+                    {
+                        dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+                        {
+                            if (r.Result.message == "OK")
+                            {
+                                var tr = r.Result.info;
+                                Session.GetInstance().CurrentSession = (string)localSettings.Values["session"];
+                                Session.GetInstance().CurrentUser = new Person(tr.firstname, tr.surname, tr.avatar, tr.sex);
+
+                                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
+                                {
+                                    throw new Exception("Failed to create initial page");
+                                }
+                            }
+                            else
+                            {
+                                if (!rootFrame.Navigate(typeof(AuthPage), e.Arguments))
+                                {
+                                    throw new Exception("Failed to create initial page");
+                                }
+                            }
+                        });
+                    });
                 }
+
+                //if (!rootFrame.Navigate(typeof(AuthPage), e.Arguments))
+                //{
+                //    throw new Exception("Failed to create initial page");
+                //}
             }
 
             // Обеспечение активности текущего окна.
@@ -111,8 +146,8 @@ namespace EveList8._1
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs e)
         {
             var rootFrame = sender as Frame;
-            rootFrame.ContentTransitions = this.transitions ?? new TransitionCollection { new NavigationThemeTransition() };
-            rootFrame.Navigated -= this.RootFrame_FirstNavigated;
+            rootFrame.ContentTransitions = _transitions ?? new TransitionCollection { new NavigationThemeTransition() };
+            rootFrame.Navigated -= RootFrame_FirstNavigated;
         }
 
         /// <summary>

@@ -53,7 +53,7 @@ namespace EvelistApi
                 @params = parameters.ToList()
             };
 
-            string s = JsonConvert.SerializeObject(req);
+            var s = JsonConvert.SerializeObject(req);
 
             return await InvokeString(Url, s);
 
@@ -61,7 +61,8 @@ namespace EvelistApi
 
         public async Task<T> InvokeMethod<T>(string method, string extension, params object[] parameters)
         {
-            var result = JsonConvert.DeserializeObject<JsonRPCResult<T>>(await InvokeMethod(method, extension, parameters));
+            var tr = await InvokeMethod(method, extension, parameters);
+            var result = JsonConvert.DeserializeObject<JsonRPCResult<T>>(tr);
             if (result.error != null)
                 throw new Exception(result.error.ToString());
             return result.result;
@@ -73,24 +74,21 @@ namespace EvelistApi
         private static async Task<string> InvokeString(string url, string request)
         {
 
-            WebRequest webRequest = WebRequest.Create(new Uri(url));
+            var webRequest = WebRequest.Create(new Uri(url));
 
             //webRequest.Headers["x-RPC-Auth-Session"] = "";
             webRequest.ContentType = "application/json";
 
             webRequest.Method = "POST";
 
-            byte[] byteArray = Encoding.UTF8.GetBytes(request);
+            var byteArray = Encoding.UTF8.GetBytes(request);
             //webRequest. = byteArray.Length;
-
-
 
 
             using (var stream = await webRequest.GetRequestStreamAsync())
             {
                 stream.Write(byteArray, 0, byteArray.Length);
             }
-
 
 
             using (var stream = await webRequest.GetResponseAsync())

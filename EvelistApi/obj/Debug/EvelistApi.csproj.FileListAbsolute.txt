@@ -31,3 +31,13 @@ C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EvelistApi\bi
 C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EvelistApi\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
 C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EvelistApi\obj\Debug\EvelistApi.dll
 C:\Users\Стас\Documents\Visual Studio 2013\Projects\EveList8.1\EvelistApi\obj\Debug\EvelistApi.pdb
+C:\Users\Стас\Documents\Evelist\EvelistApi\bin\Debug\EvelistApi.dll.config
+C:\Users\Стас\Documents\Evelist\EvelistApi\bin\Debug\EvelistApi.dll
+C:\Users\Стас\Documents\Evelist\EvelistApi\bin\Debug\EvelistApi.pdb
+C:\Users\Стас\Documents\Evelist\EvelistApi\bin\Debug\Microsoft.Threading.Tasks.dll
+C:\Users\Стас\Documents\Evelist\EvelistApi\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
+C:\Users\Стас\Documents\Evelist\EvelistApi\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Стас\Documents\Evelist\EvelistApi\bin\Debug\Microsoft.Threading.Tasks.xml
+C:\Users\Стас\Documents\Evelist\EvelistApi\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
+C:\Users\Стас\Documents\Evelist\EvelistApi\obj\Debug\EvelistApi.dll
+C:\Users\Стас\Documents\Evelist\EvelistApi\obj\Debug\EvelistApi.pdb

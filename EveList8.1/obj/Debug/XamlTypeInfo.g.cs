@@ -124,12 +124,12 @@ namespace EveList8._1.EveList8_1_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[13];
+            _typeNameTable = new string[15];
             _typeNameTable[0] = "EveList8._1.ViewModel.ViewModelLocator";
             _typeNameTable[1] = "Object";
             _typeNameTable[2] = "EveList8._1.ViewModel.MainViewModel";
             _typeNameTable[3] = "EveList8._1.ViewModel.AuthViewModel";
-            _typeNameTable[4] = "EveList8._1.AuthPage";
+            _typeNameTable[4] = "EveList8._1.View.AuthPage";
             _typeNameTable[5] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[6] = "Windows.UI.Xaml.Controls.UserControl";
             _typeNameTable[7] = "EveList8._1.ItemPage";
@@ -137,14 +137,16 @@ namespace EveList8._1.EveList8_1_XamlTypeInfo
             _typeNameTable[9] = "Windows.UI.Xaml.DependencyObject";
             _typeNameTable[10] = "EveList8._1.Common.ObservableDictionary";
             _typeNameTable[11] = "String";
-            _typeNameTable[12] = "EveList8._1.PivotPage";
+            _typeNameTable[12] = "EveList8._1.Common.Converter.SexConverter";
+            _typeNameTable[13] = "EveList8._1.Common.Converter.IntToVisibilityConverter";
+            _typeNameTable[14] = "EveList8._1.View.MainPage";
 
-            _typeTable = new global::System.Type[13];
+            _typeTable = new global::System.Type[15];
             _typeTable[0] = typeof(global::EveList8._1.ViewModel.ViewModelLocator);
             _typeTable[1] = typeof(global::System.Object);
             _typeTable[2] = typeof(global::EveList8._1.ViewModel.MainViewModel);
             _typeTable[3] = typeof(global::EveList8._1.ViewModel.AuthViewModel);
-            _typeTable[4] = typeof(global::EveList8._1.AuthPage);
+            _typeTable[4] = typeof(global::EveList8._1.View.AuthPage);
             _typeTable[5] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[6] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
             _typeTable[7] = typeof(global::EveList8._1.ItemPage);
@@ -152,7 +154,9 @@ namespace EveList8._1.EveList8_1_XamlTypeInfo
             _typeTable[9] = typeof(global::Windows.UI.Xaml.DependencyObject);
             _typeTable[10] = typeof(global::EveList8._1.Common.ObservableDictionary);
             _typeTable[11] = typeof(global::System.String);
-            _typeTable[12] = typeof(global::EveList8._1.PivotPage);
+            _typeTable[12] = typeof(global::EveList8._1.Common.Converter.SexConverter);
+            _typeTable[13] = typeof(global::EveList8._1.Common.Converter.IntToVisibilityConverter);
+            _typeTable[14] = typeof(global::EveList8._1.View.MainPage);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -190,10 +194,12 @@ namespace EveList8._1.EveList8_1_XamlTypeInfo
         private object Activate_0_ViewModelLocator() { return new global::EveList8._1.ViewModel.ViewModelLocator(); }
         private object Activate_2_MainViewModel() { return new global::EveList8._1.ViewModel.MainViewModel(); }
         private object Activate_3_AuthViewModel() { return new global::EveList8._1.ViewModel.AuthViewModel(); }
-        private object Activate_4_AuthPage() { return new global::EveList8._1.AuthPage(); }
+        private object Activate_4_AuthPage() { return new global::EveList8._1.View.AuthPage(); }
         private object Activate_7_ItemPage() { return new global::EveList8._1.ItemPage(); }
         private object Activate_10_ObservableDictionary() { return new global::EveList8._1.Common.ObservableDictionary(); }
-        private object Activate_12_PivotPage() { return new global::EveList8._1.PivotPage(); }
+        private object Activate_12_SexConverter() { return new global::EveList8._1.Common.Converter.SexConverter(); }
+        private object Activate_13_IntToVisibilityConverter() { return new global::EveList8._1.Common.Converter.IntToVisibilityConverter(); }
+        private object Activate_14_MainPage() { return new global::EveList8._1.View.MainPage(); }
         private void MapAdd_10_ObservableDictionary(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.String, global::System.Object>)instance;
@@ -239,7 +245,7 @@ namespace EveList8._1.EveList8_1_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 4:   //  EveList8._1.AuthPage
+            case 4:   //  EveList8._1.View.AuthPage
                 userType = new global::EveList8._1.EveList8_1_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
                 userType.Activator = Activate_4_AuthPage;
                 userType.SetIsLocalType();
@@ -286,11 +292,24 @@ namespace EveList8._1.EveList8_1_XamlTypeInfo
                 xamlType = new global::EveList8._1.EveList8_1_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 12:   //  EveList8._1.PivotPage
+            case 12:   //  EveList8._1.Common.Converter.SexConverter
+                userType = new global::EveList8._1.EveList8_1_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_12_SexConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 13:   //  EveList8._1.Common.Converter.IntToVisibilityConverter
+                userType = new global::EveList8._1.EveList8_1_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_13_IntToVisibilityConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 14:   //  EveList8._1.View.MainPage
                 userType = new global::EveList8._1.EveList8_1_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_12_PivotPage;
+                userType.Activator = Activate_14_MainPage;
                 userType.AddMemberName("NavigationHelper");
-                userType.AddMemberName("DefaultViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -319,15 +338,10 @@ namespace EveList8._1.EveList8_1_XamlTypeInfo
             var that = (global::EveList8._1.ItemPage)instance;
             return that.DefaultViewModel;
         }
-        private object get_4_PivotPage_NavigationHelper(object instance)
+        private object get_4_MainPage_NavigationHelper(object instance)
         {
-            var that = (global::EveList8._1.PivotPage)instance;
+            var that = (global::EveList8._1.View.MainPage)instance;
             return that.NavigationHelper;
-        }
-        private object get_5_PivotPage_DefaultViewModel(object instance)
-        {
-            var that = (global::EveList8._1.PivotPage)instance;
-            return that.DefaultViewModel;
         }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
@@ -361,16 +375,10 @@ namespace EveList8._1.EveList8_1_XamlTypeInfo
                 xamlMember.Getter = get_3_ItemPage_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
-            case "EveList8._1.PivotPage.NavigationHelper":
-                userType = (global::EveList8._1.EveList8_1_XamlTypeInfo.XamlUserType)GetXamlTypeByName("EveList8._1.PivotPage");
+            case "EveList8._1.View.MainPage.NavigationHelper":
+                userType = (global::EveList8._1.EveList8_1_XamlTypeInfo.XamlUserType)GetXamlTypeByName("EveList8._1.View.MainPage");
                 xamlMember = new global::EveList8._1.EveList8_1_XamlTypeInfo.XamlMember(this, "NavigationHelper", "EveList8._1.Common.NavigationHelper");
-                xamlMember.Getter = get_4_PivotPage_NavigationHelper;
-                xamlMember.SetIsReadOnly();
-                break;
-            case "EveList8._1.PivotPage.DefaultViewModel":
-                userType = (global::EveList8._1.EveList8_1_XamlTypeInfo.XamlUserType)GetXamlTypeByName("EveList8._1.PivotPage");
-                xamlMember = new global::EveList8._1.EveList8_1_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "EveList8._1.Common.ObservableDictionary");
-                xamlMember.Getter = get_5_PivotPage_DefaultViewModel;
+                xamlMember.Getter = get_4_MainPage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             }

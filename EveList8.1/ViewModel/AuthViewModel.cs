@@ -1,13 +1,12 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using Windows.Foundation;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using EveList8._1.Annotations;
 using EveList8._1.Common;
+using EveList8._1.DataModel;
 using EvelistApi;
-using EvelistApi.Results;
 
 namespace EveList8._1.ViewModel
 {
@@ -17,7 +16,7 @@ namespace EveList8._1.ViewModel
         public AuthViewModel()
         {
 #if DEBUG
-            Login = "3da@rambler.ru";
+            Login = "nadstas@gmail.com";
             Pass = "123123";
 #endif
         }
@@ -25,7 +24,7 @@ namespace EveList8._1.ViewModel
         private string _login;
         private string _pass;
 
-        public string Login
+        public string Login 
         {
             get { return _login; }
             set
@@ -36,7 +35,7 @@ namespace EveList8._1.ViewModel
                 OnPropertyChanged();
             }
         }
-        public string Pass
+        public string Pass  
         {
             get { return _pass; }
             set
@@ -49,9 +48,7 @@ namespace EveList8._1.ViewModel
         }
 
         #region Auth Command
-
-        private AuthResult result;
-
+        
         private RelayCommand _authCommand;
         public ICommand AuthCommand
         {
@@ -60,15 +57,36 @@ namespace EveList8._1.ViewModel
         private void Auth()
         {
             var api = new EvelistApiClient();
-            api.Auth(Login, Pass).ContinueWith(r => {
+            var dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
 
-                                                        result = r.Result;
-                                                        App.rootFrame.Navigate(typeof(PivotPage));
+            api.Auth(Login, Pass).ContinueWith(r =>
+            {
+                dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+                {
+                    if (r.Result.IsSuccessed)
+                    {
+                        var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+                        if (!localSettings.Values.ContainsKey("session"))
+                            localSettings.Values.Add("session", r.Result.session);
+                        else
+                            localSettings.Values["session"] = r.Result.session;
+
+                        Session.GetInstance().CurrentSession = r.Result.session;
+
+                        api.GetProfileInfo(r.Result.session).ContinueWith(res =>
+                        {
+                            var tr = res.Result.info;
+                            Session.GetInstance().CurrentUser = new Person(tr.firstname, tr.surname, tr.avatar, tr.sex);
+                        });
+
+                        Messenger<NavigationMessage>.Send(new NavigationMessage("Main", ""));
+                    }
+                    else
+                        new MessageDialog(@"Неверный логин\пароль", "Ошибка").ShowAsync();
+                });
             });
-            //App.rootFrame.Navigate(typeof(PivotPage));
         }
-
-
+        
         #endregion
 
         #region INotifyPropertyChanged members

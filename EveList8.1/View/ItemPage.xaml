@@ -17,37 +17,69 @@
         </TransitionCollection>
     </Page.Transitions>
 
-    <Grid x:Name="LayoutRoot">
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Pivot Title="EveList" SelectionChanged="Pivot_SelectionChanged" Name="pivot1" >
+        <PivotItem Header="{Binding Name}" >
+            <ScrollViewer>
+                <Grid x:Name="LayoutRoot">
+                    <Grid.ChildrenTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition/>
+                        </TransitionCollection>
+                    </Grid.ChildrenTransitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-        <!--Панель заголовка-->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock x:Uid="Header" Text="EveList" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="{Binding Name}" Style="{ThemeResource HeaderTextBlockStyle}" Margin="0,-6.5,0,26.5" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
-        </StackPanel>
+                    <StackPanel Grid.Row="1">
+                        <Image Source="../Assets/WideLogo.png"/>
+                        <StackPanel Margin="10 0">
+                            <TextBlock Text="{Binding Description}" 
+                                              FontSize="20" 
+                                              TextWrapping="Wrap"
+                                              MaxLines="7"/>
+                        </StackPanel>
+                    </StackPanel>
 
-        <StackPanel Grid.Row="1">
-            <Image Source="../Assets/WideLogo.png"/>
-            <StackPanel Margin="10 0">
-                <TextBlock Text="{Binding Description}" 
-                                          FontSize="20" 
-                                          TextWrapping="Wrap"/>
-            </StackPanel>
-        </StackPanel>
+                    <ComboBox Grid.Row="2" >
+                        <ComboBoxItem>Пойду</ComboBoxItem>
+                        <ComboBoxItem>Не пойду</ComboBoxItem>
+                        <ComboBoxItem>Возможно пойду</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+            </ScrollViewer>
+        </PivotItem>
+        <!--======================================================================================================-->
+        <PivotItem Header="Комментарии">
+            <ListView>
+                <ListView ItemsSource="{Binding Comments}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5" >
+                                <Image Source="{Binding Avtor.AvatarUrl}" Width="70"/>
+                                <StackPanel Margin="5,0,0,0">
+                                    <TextBlock Text="{Binding Avtor.FirstName}" FontSize="35"/>
+                                    <TextBlock Text="{Binding Content}" TextWrapping="Wrap"  FontSize="20"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ListView>
+        </PivotItem>
+    </Pivot>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Margin="2" Content="Пойду" />
-            <Button Margin="2" Content="Взможно пойду" />
-            <Button Margin="2" Content="Не пойду" />
-        </StackPanel>
-    </Grid>
+
+
+    <!--===========================================================================================================-->
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Label="Коментировать" Icon="Comment" Name="CommentButton" />
+            <AppBarButton Label="Снять фото" Icon="WebCam" Name="VideoButton" />
+            <AppBarButton Label="Снять видео" Icon="Video"  Name="PhotoButton"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
 </Page>

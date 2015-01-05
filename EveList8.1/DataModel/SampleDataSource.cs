@@ -25,12 +25,12 @@ namespace EveList8._1.Data
     {
         public SampleDataItem(String uniqueId, String title, String subtitle, String imagePath, String description, String content)
         {
-            this.UniqueId = uniqueId;
-            this.Title = title;
-            this.Subtitle = subtitle;
-            this.Description = description;
-            this.ImagePath = imagePath;
-            this.Content = content;
+            UniqueId = uniqueId;
+            Title = title;
+            Subtitle = subtitle;
+            Description = description;
+            ImagePath = imagePath;
+            Content = content;
         }
 
         public string UniqueId { get; private set; }
@@ -42,7 +42,7 @@ namespace EveList8._1.Data
 
         public override string ToString()
         {
-            return this.Title;
+            return Title;
         }
     }
 
@@ -53,12 +53,12 @@ namespace EveList8._1.Data
     {
         public SampleDataGroup(String uniqueId, String title, String subtitle, String imagePath, String description)
         {
-            this.UniqueId = uniqueId;
-            this.Title = title;
-            this.Subtitle = subtitle;
-            this.Description = description;
-            this.ImagePath = imagePath;
-            this.Items = new ObservableCollection<SampleDataItem>();
+            UniqueId = uniqueId;
+            Title = title;
+            Subtitle = subtitle;
+            Description = description;
+            ImagePath = imagePath;
+            Items = new ObservableCollection<SampleDataItem>();
         }
 
         public string UniqueId { get; private set; }
@@ -70,7 +70,7 @@ namespace EveList8._1.Data
 
         public override string ToString()
         {
-            return this.Title;
+            return Title;
         }
     }
 
@@ -87,7 +87,7 @@ namespace EveList8._1.Data
         private ObservableCollection<SampleDataGroup> _groups = new ObservableCollection<SampleDataGroup>();
         public ObservableCollection<SampleDataGroup> Groups
         {
-            get { return this._groups; }
+            get { return _groups; }
         }
 
         public static async Task<IEnumerable<SampleDataGroup>> GetGroupsAsync()
@@ -117,7 +117,7 @@ namespace EveList8._1.Data
 
         private async Task GetSampleDataAsync()
         {
-            if (this._groups.Count != 0)
+            if (_groups.Count != 0)
                 return;
 
             Uri dataUri = new Uri("ms-appx:///DataModel/SampleData.json");
@@ -146,7 +146,7 @@ namespace EveList8._1.Data
                                                        itemObject["Description"].GetString(),
                                                        itemObject["Content"].GetString()));
                 }
-                this.Groups.Add(group);
+                Groups.Add(group);
             }
         }
     }
